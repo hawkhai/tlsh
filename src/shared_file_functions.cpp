@@ -60,7 +60,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <dirent.h>
+
+#include "WinFunctions.h"
+//#include <dirent.h>
 
 #include "tlsh.h"
 #include "input_desc.h"
