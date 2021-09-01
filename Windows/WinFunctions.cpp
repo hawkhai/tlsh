@@ -12,7 +12,7 @@ DIR *opendir(const char *dirname)
 		return NULL;
 	}
 
-	DWORD dw = GetFileAttributes(dirname);
+	DWORD dw = GetFileAttributesA(dirname);
 	if ((dw & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		return NULL;
 		
@@ -29,13 +29,13 @@ struct dirent *readdir(DIR *dir)
 	}
 
 	if (dir->hFind == INVALID_HANDLE_VALUE) {
-		dir->hFind = FindFirstFile(dir->dirname, &dir->findFileData);
+		dir->hFind = FindFirstFileA(dir->dirname, &dir->findFileData);
 		if (dir->hFind == INVALID_HANDLE_VALUE) {
 			return NULL;
 		}
 	}
 	else {
-		if (!FindNextFile(dir->hFind, &dir->findFileData)) {
+		if (!FindNextFileA(dir->hFind, &dir->findFileData)) {
 			return NULL;
 		}
 	}
@@ -66,7 +66,7 @@ struct tm *localtime_r(const time_t *timep, struct tm *results)
 
 bool read_file_win(const char *fname, int sizefile, unsigned char* data)
 {
-	HANDLE hdl = CreateFile(fname, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 
+	HANDLE hdl = CreateFileA(fname, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
 		                    FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hdl == INVALID_HANDLE_VALUE) {
 		printf("ERROR: CreateFile failed on %s; error:%d\n", fname, GetLastError());

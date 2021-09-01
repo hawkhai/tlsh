@@ -1,3 +1,5 @@
+#pragma once
+class Tlsh;
 
 struct InputDescr {
 	struct FileName *fnames;

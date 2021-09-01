@@ -1,3 +1,4 @@
+#pragma once
 
 #define	ERROR_READING_FILE	1
 #define	WARNING_FILE_TOO_SMALL	2

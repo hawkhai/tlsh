@@ -298,10 +298,10 @@ int set_input_desc(char *dirname, char *listname, int listname_col, int listname
 			// col_length == TLSH_STRING_LEN_REQ	TLSH with version number T1
 			// col_length == TLSH_STRING_LEN_REQ-2	original TLSH
 			if ((col_length == TLSH_STRING_LEN_REQ) || (col_length == TLSH_STRING_LEN_REQ-2)) {
-				inputd->fnames[count].tlsh = strdup(col_tlsh);
-				inputd->fnames[count].full_fname = strdup(col_fname);
-				inputd->fnames[count].only_fname = strdup(col_fname);
-				inputd->fnames[count].dirname    = strdup(col_fname);
+				inputd->fnames[count].tlsh = _strdup(col_tlsh);
+				inputd->fnames[count].full_fname = _strdup(col_fname);
+				inputd->fnames[count].only_fname = _strdup(col_fname);
+				inputd->fnames[count].dirname    = _strdup(col_fname);
 				count ++;
 			} else {
 				fprintf(stderr, "warning: line %d file %s invalid TLSH '%s'\n", lineno, listname, col_tlsh);
@@ -382,22 +382,22 @@ int set_input_desc(char *dirname, char *listname, int listname_col, int listname
 			}
 			prev_sl = inputd->split_line_pos[mi];
 
-			inputd->fnames[mi].full_fname = strdup(buf);
-			inputd->fnames[mi].only_fname = strdup(buf);
-			inputd->fnames[mi].dirname    = strdup(buf);
+			inputd->fnames[mi].full_fname = _strdup(buf);
+			inputd->fnames[mi].only_fname = _strdup(buf);
+			inputd->fnames[mi].dirname    = _strdup(buf);
 			inputd->n_file = inputd->max_files;
 		}
 	} else if (fname) {
-		inputd->fnames[0].full_fname = strdup(fname);
-		inputd->fnames[0].only_fname = strdup(fname);
-		inputd->fnames[0].dirname    = strdup(fname);
+		inputd->fnames[0].full_fname = _strdup(fname);
+		inputd->fnames[0].only_fname = _strdup(fname);
+		inputd->fnames[0].dirname    = _strdup(fname);
 		inputd->n_file = 1;
 	}
 	if (digestname) {
-		inputd->fnames[0].full_fname = strdup(digestname);  // set for error display
-		inputd->fnames[0].only_fname = strdup(digestname);  // set for error display
-		inputd->fnames[0].dirname    = strdup(digestname);  // set for error display
-		inputd->fnames[0].tlsh = strdup(digestname);
+		inputd->fnames[0].full_fname = _strdup(digestname);  // set for error display
+		inputd->fnames[0].only_fname = _strdup(digestname);  // set for error display
+		inputd->fnames[0].dirname    = _strdup(digestname);  // set for error display
+		inputd->fnames[0].tlsh = _strdup(digestname);
 		inputd->n_file = 1;
 	}
 
