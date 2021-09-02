@@ -60,7 +60,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <dirent.h>
+
+#include "WinFunctions.h"
+//#include <dirent.h>
 
 #include "tlsh.h"
 #include "input_desc.h"
@@ -261,15 +263,15 @@ int read_file_eval_tlsh(char *fname, Tlsh *th, int show_details, int fc_cons_opt
 
 bool is_dir(char *dirname)
 {
-DIR	  *dip;
+DIR	  *dip = nullptr;
 	if (dirname == NULL) {
 		return(false);
 	}
 #ifndef WINDOWS
 	dip = opendir(dirname);
 #else
-	WIN32_FIND_DATA data;
-	HANDLE h = FindFirstFile(dirname, &data);
+	WIN32_FIND_DATAA data;
+	HANDLE h = FindFirstFileA(dirname, &data);
 	if (h != nullptr)
 	{
 		dip = new DIR();
@@ -290,14 +292,14 @@ DIR	  *dip;
 
 int count_files_in_dir(char *dirname)
 {
-DIR     *dip;
-struct dirent   *dit;
+DIR     *dip = nullptr;
+struct dirent   *dit = nullptr;
 
 #ifndef WINDOWS
 	dip = opendir(dirname);
 #else
-	WIN32_FIND_DATA data;
-	HANDLE h = FindFirstFile(dirname, &data);
+	WIN32_FIND_DATAA data;
+	HANDLE h = FindFirstFileA(dirname, &data);
 	if (h != nullptr)
 	{
 		dip = new DIR();
@@ -337,14 +339,14 @@ struct dirent   *dit;
 
 static int recursive_read_files_from_dir(char *dirname, char *thisdirname, struct FileName *fnames, int max_fnames, int *n_file)
 {
-DIR     *dip;
-struct dirent   *dit;
+DIR     *dip = nullptr;
+struct dirent   *dit = nullptr;
 
 #ifndef WINDOWS
 	dip = opendir(dirname);
 #else
-	WIN32_FIND_DATA data;
-	HANDLE h = FindFirstFile(dirname, &data);
+	WIN32_FIND_DATAA data;
+	HANDLE h = FindFirstFileA(dirname, &data);
 	if (h != nullptr)
 	{
 		dip = new DIR();

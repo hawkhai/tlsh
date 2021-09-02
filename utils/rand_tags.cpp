@@ -6,6 +6,7 @@
 #include <string>
 #include <string.h>
 #include "tlsh.h"
+#include "WinFunctions.h"
 
 static void html_contents(std::string &htmls);
 static void html_table(std::string &htmls, int *ntags);
