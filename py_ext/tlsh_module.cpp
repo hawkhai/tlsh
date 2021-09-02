@@ -61,6 +61,8 @@
 #include <bytesobject.h>
 #include "tlsh.h"
 
+#define PY_MAJOR_VERSION 3
+
 // to generate the "T1" hashes introduced in TLSH 4.0.0
 // see 4.0.0 from 26/Mar/2020 at https://github.com/trendmicro/tlsh/blob/master/Change_History.md
 #define SHOWVERSION	1
