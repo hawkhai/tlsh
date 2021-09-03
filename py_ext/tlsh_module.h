@@ -24,7 +24,7 @@ typedef struct {
 } tlsh_TlshObject;
 
 static tlsh_TlshObject* Tlsh_create(const char* str, unsigned int len);
-static tlsh_TlshObject* Tlsh_fromTlshStr(const char* str = nullptr, unsigned int len = 0);
+static tlsh_TlshObject* Tlsh_fromTlshStr(const char* str, unsigned int len);
 static void Tlsh_release(tlsh_TlshObject* self);
 
 void Tlsh_update(tlsh_TlshObject* self, const char* str, unsigned int len);

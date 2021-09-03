@@ -101,6 +101,7 @@ static tlsh_TlshObject* Tlsh_fromTlshStr(const char* str, unsigned int len)
     tlsh_TlshObject* self = Tlsh_create(str, len);
 
     if (self->tlsh.fromTlshStr(str) != 0) {
+        delete self;
         throw "argument value incorrect: not a TLSH hex string";
         return NULL;
     }
@@ -127,7 +128,7 @@ void Tlsh_final(tlsh_TlshObject* self)
         return;
     }
     if (self->required_data < MIN_DATA_LENGTH) {
-        throw "less than %u of input", MIN_DATA_LENGTH;
+        throw "less than %u of input";
         return;
     }
     self->finalized = true;
