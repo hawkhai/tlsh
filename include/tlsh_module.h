@@ -1,3 +1,4 @@
+#pragma once
 #include <new>
 #include <string>
 #include "tlsh.h"
@@ -18,8 +19,8 @@ static int diff_py(char* hash1, char* hash2);
 static int diffxlen_py(char* hash1, char* hash2);
 
 typedef struct {
-    unsigned short required_data;
-    bool finalized;
+    unsigned int required_data; // = 0;
+    bool finalized; // = false;
     Tlsh tlsh;
 } tlsh_TlshObject;
 
